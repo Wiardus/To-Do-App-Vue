@@ -7,7 +7,7 @@
 
    <ol>   
       <li v-for="task in taskList" :key="task.id">
-      <span :class="task.completed ? 'completed': ''">Task: {{ task.name }}</span>
+      <span :class="task.completed ? 'completed': ''"><strong>Taak: </strong>{{ task.name }}</span>
        <input type="checkbox" v-model="task.completed">
        <button type="button" v-on:click="deleteTask(taskList)">X</button>
         
@@ -63,6 +63,7 @@
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
     input {
         width: 300px;
         height: 30px;
@@ -86,5 +87,12 @@
 
     .completed{
         text-decoration: line-through;
+    }
+
+    ol {
+        display: inline-block;
+        align-items: center;
+        font-family: 'Roboto';
+        font-size: 1.5em;
     }
 </style>

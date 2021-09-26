@@ -12,7 +12,11 @@
 </script>
 
 <style scoped>
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     h1 {
-        font-family: Arial;
+        font-family: 'Roboto';
+        font-weight: bold;
+        font-size: 2.5em;
+
     }
 </style>

@@ -2,14 +2,16 @@
    <div id="input">
    <form>
      <input placeholder="Wat moet er gedaan worden..." type="text" v-model="currentTask.name">
-     <button type="button" v-on:click="addTask">+</button>
+     <button type="button" v-on:click="addTask">+</button> 
+
    </form>
 
-   <ol>   
+   <ol id='list'>   
       <li v-for="task in taskList" :key="task.id">
       <span :class="task.completed ? 'completed': ''"><strong>Taak: </strong>{{ task.name }}</span>
        <input type="checkbox" v-model="task.completed">
-       <button type="button" v-on:click="deleteTask(taskList)">X</button>
+       <button type="button" v-on:click="deleteTask(taskList)">X</button> <br>
+       
         
       </li>
     </ol>     
@@ -42,11 +44,11 @@
                             alert('Luilak!')
                             return
                         }
-                      
+                       
                        this.taskList.push(newTask);
                        this.id++;
-                       //localStorage.setItem(this.taskList, this.task)
-                       //console.log(localStorage.getItem(this.taskList, this.task))
+                       
+                      
                      },   
                      completeTask: function () {
                          if(this.task.completed==true) {
@@ -55,7 +57,26 @@
                      },
                      deleteTask: function () {
                          this.taskList.splice(this.taskList, 1)
-                     }              
+                     },
+                     /* saveTask: function () {
+                         localStorage.setItem('Taak', this.currentTask.name)
+                         let data = localStorage.getItem('Taak')
+                         document.getElementByid('list').appendChild(data) 
+
+                     }*/  
+        },
+        watch: {
+            taskList: {
+                handler() {
+                    localStorage.setItem('taskList', JSON.stringify(this.taskList))
+                },
+                deep: true
+            }
+        },
+        mounted() {
+            if (localStorage.getItem('taskList')) {
+                this.taskList = JSON.parse(localStorage.getItem('taskList'))
+            }
         }
         
     }

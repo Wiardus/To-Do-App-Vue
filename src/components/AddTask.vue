@@ -2,7 +2,7 @@
    <div id="input">
    <form>
      <input placeholder="Wat moet er gedaan worden..." type="text" v-model="currentTask.name">
-     <button type="button" v-on:click="addTask">+</button> 
+     <button type="button" v-on:click="addTask" v-on:keyup.enter="addTask">+</button> 
 
    </form>
 
@@ -58,12 +58,6 @@
                      deleteTask: function () {
                          this.taskList.splice(this.taskList, 1)
                      },
-                     /* saveTask: function () {
-                         localStorage.setItem('Taak', this.currentTask.name)
-                         let data = localStorage.getItem('Taak')
-                         document.getElementByid('list').appendChild(data) 
-
-                     }*/  
         },
         watch: {
             taskList: {
@@ -96,7 +90,7 @@
         width: 40px;
         height: 35px;
         font-size: 30px;
-        background: orange;
+        background: none;
         border-style: none;
         cursor: pointer;
         border-radius: 5%;
